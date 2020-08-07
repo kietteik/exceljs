@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sshh</title>
+    <script src="xlsx.full.min.js"></script>
+  </head>
+  <body>
+    <h1>Hello</h1>
+    <form id="file-catcher">
+      <input id="file-input" type="file" multiple />
+      <button type="submit">
+        Submit
+      </button>
+    </form>
+    <div id="file-list-display"></div>
+  </body>
+  <script>
+    (function () {
+      var fileCatcher = document.getElementById("file-catcher");
+      var fileInput = document.getElementById("file-input");
+      var fileListDisplay = document.getElementById("file-list-display");
+
+      var fileList = [];
+      var renderFileList, sendFile;
+
+      fileCatcher.addEventListener("submit", function (evnt) {
+        evnt.preventDefault();
+        fileList.forEach(function (file) {
+          sendFile(file);
+        });
+      });
+
+      fileInput.addEventListener("change", function (evnt) {
+        fileList = [];
+        for (var i = 0; i < fileInput.files.length; i++) {
+          fileList.push(fileInput.files[i]);
+          handleFile(evnt, i);
+        }
+        renderFileList();
+      });
+
+      renderFileList = function () {
+        fileListDisplay.innerHTML = "";
+        fileList.forEach(function (file, index) {
+          var fileDisplayEl = document.createElement("p");
+          fileDisplayEl.innerHTML = index + 1 + ": " + file.name;
+          fileListDisplay.appendChild(fileDisplayEl);
+        });
+      };
+
+      function handleFile(e, inx = 0) {
+        var files = e.target.files,
+          f = files[inx];
+
+        console.log(f);
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          var data = new Uint8Array(e.target.result);
+          var workbook = XLSX.read(data, { type: "array" });
+
+          var ws_name = "SheetJS";
+
+          /* make worksheet */
+          var ws_data = [
+            ["S", "h", "e", "e", "t", "J", "S"],
+            [1, 2, 3, 4, 5],
+          ];
+          var ws = XLSX.utils.aoa_to_sheet(ws_data);
+
+          /* Add the worksheet to the workbook */
+          XLSX.utils.book_append_sheet(workbook, ws, ws_name);
+
+          XLSX.writeFile(workbook, f.name);
+          console.log(
+            XLSX.utils.sheet_to_json(workbook.Sheets[workbook.SheetNames[0]])
+          );
+        };
+        reader.readAsArrayBuffer(f);
+      }
+      // fileInput.addEventListener("change", handleFile, false);
+    })();
+  </script>
+</html>
