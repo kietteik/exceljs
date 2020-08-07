@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>sshh</title>
+    <link
+      rel="shortcut icon"
+      href="https://cdn.iconscout.com/icon/premium/png-256-thumb/straw-hat-2387749-2003716.png"
+      type="image/x-icon"
+    />
+    <script src="xlsx.full.min.js"></script>
+    <script src="jszip.min.js"></script>
+    <script src="FileSaver.min.js"></script>
+  </head>
+  <body>
+    <button id="blob" class="btn btn-primary">click to download</button>
+  </body>
+  <script>
+    var zip = new JSZip();
+    for (i = 0; i < 10; i++) {
+      zip.file(`Hello${i}.txt`, "Hello world\n");
+      console.log(zip);
+    }
+    var button = document.getElementById("blob");
+    button.addEventListener("click", function () {
+      zip.generateAsync({ type: "blob" }).then(function (blob) {
+        // 1) generate the zip file
+        saveAs(blob, "test.zip"); // 2) trigger the download
+      });
+    });
+  </script>
+</html>
