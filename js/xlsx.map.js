@@ -51,7 +51,7 @@
             count += 1
         }
         renderFileList();
-        msg[0].innerHTML = '<span class="badge badge-pill badge-warning">Rendered</span>';
+        msg[0].innerHTML = '<span class="badge badge-pill badge-warning">Rendering...</span>';
         // smbtn.disabled = false
     });
 
