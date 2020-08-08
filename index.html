@@ -1,27 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>sshh</title>
-    <link
-      rel="shortcut icon"
-      href="https://cdn.iconscout.com/icon/premium/png-256-thumb/straw-hat-2387749-2003716.png"
-      type="image/x-icon"
-    />
-    <script src="./js/xlsx.full.min.js"></script>
-    <script src="./js/jszip.min.js"></script>
-    <script src="./js/FileSaver.min.js"></script>
-  </head>
-  <body>
-    <h1>Hello</h1>
-    <form id="file-catcher">
-      <input id="file-input" type="file" multiple />
-      <button type="submit">
-        Download
-      </button>
-    </form>
-    <div id="file-list-display"></div>
-  </body>
-  <script src="./js/xlsx.map.js"></script>
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>sshh</title>
+	<link rel="shortcut icon" href="https://cdn.iconscout.com/icon/premium/png-256-thumb/straw-hat-2387749-2003716.png"
+		type="image/x-icon" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+		integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="./css/style.css">
+	<script src="./js/xlsx.full.min.js"></script>
+	<script src="./js/jszip.min.js"></script>
+	<script src="./js/FileSaver.min.js"></script>
+
+</head>
+
+<body>
+	<div class="container">
+		<div class="jumbotron" style="background:none">
+			<form id="file-catcher">
+				<div class="row">
+					<h1 class="mx-auto">Hello</h1>
+				</div>
+				<!-- <div class="row">
+					<button id="submit-btn" class="btn btn-danger mx-auto" type="submit" disabled>
+						Download
+					</button>
+				</div> -->
+				<div id="FileUpload">
+					<div class="wrapper">
+						<div class="upload form-group">
+							<input class="form-control-file btn btn-warning mx-3" id="file-input" type="file"
+								multiple />
+						</div>
+
+						<div id="file-list-display">
+							<!-- <p>
+								<div class="uploaded">
+									<i class="far fa-file-excel"></i>
+									<div class="file">
+										<div class="file__name">
+											<p>MNY (1).xls</p>
+											<p>0</p>
+										</div>
+										<div class="progress">
+											<div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+												style="width:100%"></div>
+										</div>
+									</div>
+								</div>
+							</p> -->
+						</div>
+					</div>
+				</div>
+				<!-- <input class="form-control" id="file-input" type="file" multiple /> -->
+			</form>
+		</div>
+	</div>
+</body>
+
+<script src="./js/xlsx.map.js"></script>
+
 </html>
